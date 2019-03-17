@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 import com.joydeep.springmvc.model.UserDetails;
 import com.joydeep.springmvc.rabbit.MessageProducer;
+import com.joydeep.springmvc.service.MailSender;
 import com.joydeep.springmvc.service.UserService;
 
 @Controller
@@ -21,6 +22,9 @@ public class UserController {
 
 	@Autowired
 	private UserService userService;
+	
+//	@Autowired
+//	private static MailSender mailSender;
 	
 	@Autowired
     private MessageProducer messageProducer;
@@ -42,6 +46,7 @@ public class UserController {
 		System.out.println("User : " + user.getName());
 		System.out.println("User : " + user.getPassword());
 		
+		//mailSender.sendMail();
 		messageProducer.sendMessage("Hi Jodeep, This is a test message sent to message queue");
 		
 		return "home";
